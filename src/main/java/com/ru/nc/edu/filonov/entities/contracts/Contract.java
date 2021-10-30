@@ -4,17 +4,16 @@ import com.ru.nc.edu.filonov.entities.person.Person;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
 
 public abstract class Contract {
 
-    private UUID id;
+    private Long id;
     private LocalDate startDate;
     private LocalDate endDate;
     private int number;
     private Person owner;
 
-    public Contract(UUID id, LocalDate startDate, LocalDate endDate, int number, Person owner) {
+    public Contract(Long id, LocalDate startDate, LocalDate endDate, int number, Person owner) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -22,7 +21,7 @@ public abstract class Contract {
         this.owner = owner;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

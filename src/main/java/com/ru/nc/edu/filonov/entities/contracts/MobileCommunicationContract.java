@@ -3,7 +3,6 @@ package com.ru.nc.edu.filonov.entities.contracts;
 import com.ru.nc.edu.filonov.entities.person.Person;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class MobileCommunicationContract extends Contract {
 
@@ -11,9 +10,9 @@ public class MobileCommunicationContract extends Contract {
     private int numberOfSmsMessages;
     private int numberOfGbOfTraffic;
 
-    public MobileCommunicationContract(LocalDate startDate, LocalDate endDate, int number, Person owner,
+    public MobileCommunicationContract(Long id, LocalDate startDate, LocalDate endDate, int number, Person owner,
                                        int numberOfMinutes, int numberOfSmsMessages, int numberOfGbOfTraffic) {
-        super(UUID.randomUUID(), startDate, endDate, number, owner);
+        super(id, startDate, endDate, number, owner);
         this.numberOfMinutes = numberOfMinutes;
         this.numberOfSmsMessages = numberOfSmsMessages;
         this.numberOfGbOfTraffic = numberOfGbOfTraffic;

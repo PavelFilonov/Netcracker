@@ -5,7 +5,6 @@ import com.ru.nc.edu.filonov.entities.contracts.Contract;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 public class ContractRepository implements Repository<Contract> {
 
@@ -23,12 +22,12 @@ public class ContractRepository implements Repository<Contract> {
     }
 
     @Override
-    public boolean removeById(UUID id) {
+    public boolean removeById(Long id) {
         return false;
     }
 
     @Override
-    public Contract get(UUID id) {
+    public Contract get(Long id) {
         return null;
     }
 }
