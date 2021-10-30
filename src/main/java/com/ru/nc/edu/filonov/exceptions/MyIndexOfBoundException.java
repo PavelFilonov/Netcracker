@@ -1,4 +1,4 @@
-package com.ru.nc.edu.filonov.exception;
+package com.ru.nc.edu.filonov.exceptions;
 
 public class MyIndexOfBoundException extends Exception {
 

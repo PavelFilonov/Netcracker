@@ -1,6 +1,6 @@
 package com.ru.nc.edu.filonov.utils;
 
-import com.ru.nc.edu.filonov.exception.MyIndexOfBoundException;
+import com.ru.nc.edu.filonov.exceptions.MyIndexOfBoundException;
 
 public interface MyList<T> {
 
