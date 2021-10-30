@@ -1,31 +1,36 @@
 package com.ru.nc.edu.filonov.repositories;
 
 import com.ru.nc.edu.filonov.entities.contracts.Contract;
+import com.ru.nc.edu.filonov.utils.MyArrayList;
+import com.ru.nc.edu.filonov.utils.MyList;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 public class ContractRepository implements Repository<Contract> {
 
-    private Set<Contract> contracts = new HashSet<>();
+    private MyList<Contract> contracts = new MyArrayList<>();
 
     @Override
     public boolean add(Contract item) {
-        return contracts.add(item);
+        if (contains(item))
+            return false;
+        contracts.add(item);
+        return true;
     }
 
     @Override
-    public boolean addAll(Collection<Contract> items) {
-        return contracts.addAll(items);
+    public void addAll(MyList<Contract> items) {
+        for (int i = 0; i < items.size(); i++) {
+            if (!contains(items.get(i)))
+                contains(items.get(i));
+        }
     }
 
     @Override
     public boolean removeById(Long id) {
         Optional<Contract> item = get(id);
         if (item.isPresent()) {
-            contracts.remove(item);
+            contracts.remove(item.get());
             return true;
         }
         return false;
@@ -33,8 +38,18 @@ public class ContractRepository implements Repository<Contract> {
 
     @Override
     public Optional<Contract> get(Long id) {
-        return contracts.stream()
-                .filter(item -> item.getId().equals(id))
-                .findFirst();
+        for (int i = 0; i < contracts.size(); i++) {
+            if (contracts.get(i).getId().equals(id))
+                return Optional.of(contracts.get(i));
+        }
+        return Optional.empty();
+    }
+
+    private boolean contains(Contract item) {
+        for (int i = 0; i < contracts.size(); i++) {
+            if (contracts.get(i).equals(item))
+                return true;
+        }
+        return false;
     }
 }

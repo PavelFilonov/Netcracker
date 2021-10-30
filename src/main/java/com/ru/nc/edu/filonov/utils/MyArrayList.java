@@ -1,7 +1,5 @@
 package com.ru.nc.edu.filonov.utils;
 
-import com.ru.nc.edu.filonov.exceptions.MyIndexOfBoundException;
-
 public class MyArrayList <T>  implements MyList<T> {
 
     private int size = 0;
@@ -66,10 +64,9 @@ public class MyArrayList <T>  implements MyList<T> {
         array = new Object[INIT_SIZE];
     }
 
-    public T get(int index) throws MyIndexOfBoundException {
-        if (index < 0 || index >= size) {
-            throw new MyIndexOfBoundException(index, size);
-        }
+    public T get(int index) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException();
         return (T) array[index];
     }
 }

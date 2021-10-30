@@ -1,7 +1,5 @@
 package com.ru.nc.edu.filonov.utils;
 
-import com.ru.nc.edu.filonov.exceptions.MyIndexOfBoundException;
-
 public interface MyList<T> {
 
     int size();
@@ -11,5 +9,5 @@ public interface MyList<T> {
     boolean remove(T item);
     boolean removeByIndex(int index);
     void clear();
-    T get(int index) throws MyIndexOfBoundException;
+    T get(int index);
 }
