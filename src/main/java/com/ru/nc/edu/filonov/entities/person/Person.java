@@ -5,7 +5,6 @@ import com.ru.nc.edu.filonov.enums.Sex;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * Класс, описывающий человека
@@ -13,7 +12,7 @@ import java.util.UUID;
 public class Person {
 
     /** Уникальный идентификатор */
-    private UUID id;
+    private Long id;
 
     /** ФИО */
     private String fullName;
@@ -35,7 +34,7 @@ public class Person {
      * @param sex пол
      * @param passportSeriesAndNumber серия и номер паспорта
      */
-    public Person(UUID id, String fullName, LocalDate birthday, Sex sex, int passportSeriesAndNumber) {
+    public Person(Long id, String fullName, LocalDate birthday, Sex sex, int passportSeriesAndNumber) {
         this.id = id;
         this.fullName = fullName;
         this.birthday = birthday;
@@ -44,21 +43,10 @@ public class Person {
     }
 
     /**
-     * Конструктор класса без параметра id
-     * @param fullName ФИО
-     * @param birthday дата рождения
-     * @param sex пол
-     * @param passportSeriesAndNumber серия и номер паспорта
-     */
-    public Person(String fullName, LocalDate birthday, Sex sex, int passportSeriesAndNumber) {
-        this(UUID.randomUUID(), fullName, birthday, sex, passportSeriesAndNumber);
-    }
-
-    /**
      * Getter уникального идентификатора
      * @return уникальный идентификатор
      */
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
