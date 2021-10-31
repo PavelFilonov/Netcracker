@@ -4,6 +4,7 @@ import com.ru.nc.edu.filonov.entities.contracts.Contract;
 import com.ru.nc.edu.filonov.utils.MyArrayList;
 import com.ru.nc.edu.filonov.utils.MyList;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -76,5 +77,13 @@ public class ContractRepository implements Repository<Contract> {
                 return true;
         }
         return false;
+    }
+
+    /**
+     * Getter списка контрактов
+     * @return список контрактов
+     */
+    public MyList<Contract> getContracts() {
+        return contracts; // не копия, потому что мой список не реализует интерфейс Collection
     }
 }
