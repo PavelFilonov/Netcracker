@@ -1,6 +1,17 @@
 package com.ru.nc.edu.filonov.enums;
 
-public enum  Sex {
+/**
+ * Перечисление полов
+ */
+public enum Sex {
+
+    /**
+     * Мужчина
+     */
     MALE,
+
+    /**
+     * Женщина
+     */
     FEMALE
 }
