@@ -66,8 +66,7 @@ public class MyArrayList<T>  implements MyList<T> {
     @Override
     public void addAll(MyList<T> items) {
         for (int i = 0; i < items.size(); i++) {
-            if (!contains(items.get(i)))
-                add(items.get(i));
+            add(items.get(i));
         }
     }
 

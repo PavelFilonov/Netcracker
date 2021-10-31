@@ -4,7 +4,6 @@ import com.ru.nc.edu.filonov.entities.contracts.Contract;
 import com.ru.nc.edu.filonov.utils.MyArrayList;
 import com.ru.nc.edu.filonov.utils.MyList;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -72,11 +71,7 @@ public class ContractRepository implements Repository<Contract> {
      * @return результат проверки (true - входит, false - не входит)
      */
     private boolean contains(Contract item) {
-        for (int i = 0; i < contracts.size(); i++) {
-            if (contracts.get(i).equals(item))
-                return true;
-        }
-        return false;
+        return contracts.contains(item);
     }
 
     /**
