@@ -66,4 +66,9 @@ public interface MyList<T> {
      * @return объект списка с заданным индексом
      */
     T get(int index);
+
+    /**
+     * @return клон списка
+     */
+    MyList<T> copy();
 }

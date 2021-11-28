@@ -3,6 +3,7 @@ package com.ru.nc.edu.filonov.repositories;
 import com.ru.nc.edu.filonov.utils.MyList;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Интерфейс репозитория
@@ -11,29 +12,48 @@ import java.util.Optional;
 public interface Repository<T> {
 
     /**
-     * Метод добавления контракта
-     * @param item объект класса контракта, который нужно добавить
+     * Метод добавления объекта
+     * @param item добавляемый объект
      * @return результат добавления (true - добавлен, false - не добавлен)
      */
     boolean add(T item);
 
     /**
-     * Метод для добавления списка контрактов
-     * @param items список контрактов
+     * Метод для добавления списка объектов
+     * @param items список, который нужно добавить
      */
     void addAll(MyList<T> items);
 
     /**
-     * Метод удаления контракта по id
-     * @param id уникальный идентификатор удаляемого контракта
+     * Метод удаления объекта по id
+     * @param id уникальный идентификатор удаляемого объекта
      * @return результат удаления (true - удалён, false - не удалён)
      */
     boolean removeById(Long id);
 
     /**
-     * Метод получения контракта по id
-     * @param id уникальный идентификатор получаемого контракта
-     * @return контракт, обёрнутый в Optional
+     * Метод получения объекта по id
+     * @param id уникальный идентификатор получаемого объекта
+     * @return объект, обёрнутый в Optional
      */
     Optional<T> get(Long id);
+
+
+    /**
+     * @param predicate предикат, по которому выбираются объекты
+     * @return новый репозиторий из удовлятворяющих предикату объектов
+     */
+    Repository<T> search(Predicate<T> predicate);
+
+    /**
+     * Getter списка объектов
+     * @return список объектов
+     */
+    MyList<T> getContracts();
+
+    /**
+     * @param index индекс получаемого объекта
+     * @return объект
+     */
+    T getByIndex(int index);
 }

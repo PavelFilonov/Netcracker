@@ -106,4 +106,22 @@ public class MyArrayListTest {
         list.add(10);
         Assert.assertEquals(list.get(0).intValue(), 10);
     }
+
+
+    /**
+     * Метод тестирования копирования списка
+     */
+    @Test
+    public void copy() {
+        MyList<Integer> originalList = new MyArrayList<>();
+        originalList.add(1);
+        originalList.add(2);
+        originalList.add(3);
+
+        MyList<Integer> duplicateList = originalList.copy();
+
+        for (int i = 0; i < originalList.size(); i++) {
+            Assert.assertEquals(originalList.get(i), duplicateList.get(i));
+        }
+    }
 }

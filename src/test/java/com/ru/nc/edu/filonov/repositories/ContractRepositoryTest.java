@@ -78,4 +78,34 @@ public class ContractRepositoryTest {
         repository.add(contract);
         Assert.assertEquals(repository.get(1L).get(), contract);
     }
+
+    /**
+     * Метод тестирования получения нового репозитория, у которого контракты удовлетворяет передаваемому предикату
+     */
+    @Test
+    public void search() {
+        Repository<Contract> originalRepository = new ContractRepository();
+
+        Contract contract1 = new DigitalTvContract(
+                1L, LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), 10,
+                new Person(2L, "Филонов Павел Олегович", LocalDate.of(2001, 7, 29), Sex.MALE, 1111),
+                new String[]{"1-ый канал", "2-йо канал"});
+        originalRepository.add(contract1);
+
+        Contract contract2 = new DigitalTvContract(
+                2L, LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), 10,
+                new Person(2L, "Филонов Павел Олегович", LocalDate.of(2001, 7, 29), Sex.MALE, 1111),
+                new String[]{"1-ый канал", "2-йо канал"});
+        originalRepository.add(contract2);
+
+        Assert.assertEquals(originalRepository.getContracts().size(), 2);
+
+        Repository<Contract> predicatedRepository1 = originalRepository.search(x -> x.getId() == 1L);
+        Assert.assertEquals(predicatedRepository1.getContracts().size(), 1);
+        Assert.assertEquals(predicatedRepository1.getByIndex(0).getId(), Long.valueOf(1));
+
+        Repository<Contract> predicatedRepository2 = originalRepository.search(x -> x.getId() == 2L);
+        Assert.assertEquals(predicatedRepository2.getContracts().size(), 1);
+        Assert.assertEquals(predicatedRepository2.getByIndex(0).getId(), Long.valueOf(2));
+    }
 }

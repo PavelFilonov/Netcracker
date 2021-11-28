@@ -5,6 +5,7 @@ import com.ru.nc.edu.filonov.utils.MyArrayList;
 import com.ru.nc.edu.filonov.utils.MyList;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Класс репозитория контрактов
@@ -23,6 +24,7 @@ public class ContractRepository implements Repository<Contract> {
     public boolean add(Contract item) {
         if (contains(item))
             return false;
+
         contracts.add(item);
         return true;
     }
@@ -44,10 +46,12 @@ public class ContractRepository implements Repository<Contract> {
     @Override
     public boolean removeById(Long id) {
         Optional<Contract> item = get(id);
+
         if (item.isPresent()) {
             contracts.remove(item.get());
             return true;
         }
+
         return false;
     }
 
@@ -62,7 +66,37 @@ public class ContractRepository implements Repository<Contract> {
             if (contracts.get(i).getId().equals(id))
                 return Optional.of(contracts.get(i));
         }
+
         return Optional.empty();
+    }
+
+
+    /**
+     * @param predicate предикат, по которому выбираются контракты
+     * @return новый репозиторий из удовлятворяющих предикату контрактов
+     */
+    @Override
+    public Repository<Contract> search(Predicate<Contract> predicate) {
+        Repository<Contract> newRepository = new ContractRepository();
+
+        for (int i = 0; i < contracts.size(); i++) {
+            if (predicate.test(contracts.get(i)))
+                newRepository.add(contracts.get(i));
+        }
+
+        return newRepository;
+    }
+
+
+    /**
+     * @param index индекс получаемого контракта
+     * @return контракт
+     */
+    public Contract getByIndex(int index) {
+        if (index >= 0 && index < contracts.size())
+            return contracts.get(index);
+
+        return null;
     }
 
     /**

@@ -131,4 +131,14 @@ public class MyArrayList<T>  implements MyList<T> {
             throw new IndexOutOfBoundsException();
         return (T) array[index];
     }
+
+    /**
+     * @return клон списка
+     */
+    @Override
+    public MyList<T> copy() {
+        MyList<T> newList = new MyArrayList<>();
+        newList.addAll(this);
+        return newList;
+    }
 }
