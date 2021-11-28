@@ -71,4 +71,11 @@ public interface MyList<T> {
      * @return клон списка
      */
     MyList<T> copy();
+
+
+    /**
+     * @param index индекс
+     * @param o объект
+     */
+    void replace(int index, Object o);
 }

@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 /**
  * Класс для тестирования методов класса ContractRepository
@@ -107,5 +108,32 @@ public class ContractRepositoryTest {
         Repository<Contract> predicatedRepository2 = originalRepository.search(x -> x.getId() == 2L);
         Assert.assertEquals(predicatedRepository2.getContracts().size(), 1);
         Assert.assertEquals(predicatedRepository2.getByIndex(0).getId(), Long.valueOf(2));
+    }
+
+    /**
+     * Метод тестирования сортировки по переданному компаратору
+     */
+    @Test
+    public void sort() {
+        Repository<Contract> repository = new ContractRepository();
+
+        Contract contract1 = new DigitalTvContract(
+                2L, LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), 10,
+                new Person(2L, "Филонов Павел Олегович", LocalDate.of(2001, 7, 29), Sex.MALE, 1111),
+                new String[]{"1-ый канал", "2-йо канал"});
+        repository.add(contract1);
+
+        Contract contract2 = new DigitalTvContract(
+                1L, LocalDate.of(2020, 1, 1), LocalDate.of(2021, 1, 1), 10,
+                new Person(2L, "Филонов Павел Олегович", LocalDate.of(2001, 7, 29), Sex.MALE, 1111),
+                new String[]{"1-ый канал", "2-йо канал"});
+        repository.add(contract2);
+
+        Comparator<Contract> comparator = Comparator.comparing(Contract::getId);
+
+        repository.sort(comparator);
+
+        Assert.assertEquals(repository.getByIndex(0).getId(), Long.valueOf(1));
+        Assert.assertEquals(repository.getByIndex(1).getId(), Long.valueOf(2));
     }
 }

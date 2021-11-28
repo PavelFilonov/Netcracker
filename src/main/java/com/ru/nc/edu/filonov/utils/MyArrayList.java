@@ -141,4 +141,13 @@ public class MyArrayList<T>  implements MyList<T> {
         newList.addAll(this);
         return newList;
     }
+
+    /**
+     * @param index индекс
+     * @param o     объект
+     */
+    @Override
+    public void replace(int index, Object o) {
+        array[index] = o;
+    }
 }

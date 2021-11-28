@@ -1,9 +1,12 @@
 package com.ru.nc.edu.filonov.repositories;
 
 import com.ru.nc.edu.filonov.entities.contracts.Contract;
+import com.ru.nc.edu.filonov.sorters.BubbleSorter;
+import com.ru.nc.edu.filonov.sorters.Sorter;
 import com.ru.nc.edu.filonov.utils.MyArrayList;
 import com.ru.nc.edu.filonov.utils.MyList;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -14,6 +17,8 @@ public class ContractRepository implements Repository<Contract> {
 
     /** Список контрактов */
     private MyList<Contract> contracts = new MyArrayList<>();
+
+    private Sorter<Contract> sorter = new BubbleSorter<>();
 
     /**
      * Метод добавления контракта
@@ -70,7 +75,6 @@ public class ContractRepository implements Repository<Contract> {
         return Optional.empty();
     }
 
-
     /**
      * @param predicate предикат, по которому выбираются контракты
      * @return новый репозиторий из удовлятворяющих предикату контрактов
@@ -97,6 +101,14 @@ public class ContractRepository implements Repository<Contract> {
             return contracts.get(index);
 
         return null;
+    }
+
+    /**
+     * Метод сортировки списка контрактов репозитория
+     */
+    @Override
+    public void sort(Comparator<Contract> comparator) {
+        sorter.sort(contracts, comparator);
     }
 
     /**

@@ -2,6 +2,7 @@ package com.ru.nc.edu.filonov.repositories;
 
 import com.ru.nc.edu.filonov.utils.MyList;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -56,4 +57,9 @@ public interface Repository<T> {
      * @return объект
      */
     T getByIndex(int index);
+
+    /**
+     * Метод сортировки списка объектов репозитория
+     */
+    void sort(Comparator<T> comparator);
 }
